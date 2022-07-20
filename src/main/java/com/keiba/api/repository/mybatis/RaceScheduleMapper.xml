@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keiba.api.repository.mybatis.RaceScheduleMapper">
+
+    <resultMap id="RaceSchedule" type="com.keiba.api.domain.RaceSchedule">
+        <id property="raceId" column="race_id"/>
+        <result property="raceDate" column="race_date"/>
+        <result property="raceName" column="race_name"/>
+        <result property="raceDetailLink" column="race_detail_link"/>
+        <result property="raceGrade" column="race_grade"/>
+        <result property="raceCity" column="race_city"/>
+        <result property="raceDistance" column="race_distance"/>
+        <result property="raceTerms" column="race_terms"/>
+        <result property="raceWeight" column="race_weight"/>
+        <result property="registerDate" column="register_date"/>
+    </resultMap>
+
+    <select id="find" resultMap="RaceSchedule">
+        SELECT
+        race_id,
+        race_date,
+        race_name,
+        race_detail_link,
+        race_grade,
+        race_city,
+        race_distance,
+        race_terms,
+        race_weight,
+        register_date
+        FROM
+        RACE_SCHEDULE
+        <where>
+            <if test="raceId != null">
+                race_id = #{raceId}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- sysdateをbindする共通Util -->
+    <sql id="timestampVariable">
+        <bind name="sysdate" value="@java.time.LocalDateTime@now()"/>
+    </sql>
+</mapper>
