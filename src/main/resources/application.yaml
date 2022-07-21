@@ -1,1 +1,7 @@
+#------------------------------------------------------
+# MyBatis設定
+#------------------------------------------------------
+#mybatis:
+#  mapper-locations: classpath:jp/co/yahoo/knowledge/api/repository/mybatis/*.xml
+
 server.port: 8080
